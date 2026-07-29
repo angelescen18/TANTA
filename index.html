@@ -1,0 +1,1462 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Marketing 5.0</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		body {
+			display: flex;
+			flex-direction: column;
+			min-height: 100vh;
+			background-color: #fbf8f0; /* Light cream body background */
+			color: #4a1c1c; /* Dark brown/maroon brand text */
+		}
+		.custom-navbar {
+			background-color: #ede6d6 !important;
+		}
+		.custom-nav-link {
+			color: #ff007f !important;
+		}
+		.custom-nav-link:hover {
+			color: #cc0066 !important;
+		}
+		.custom-nav-link.active-nav {
+			background-color: #ff007f !important;
+			color: #ffffff !important;
+			border-radius: 4px;
+		}
+		.custom-btn {
+			background-color: #ff007f !important;
+			color: #ffffff !important;
+			border-radius: 4px;
+			padding: 6px 15px !important;
+		}
+		.custom-btn:hover {
+			background-color: #cc0066 !important;
+			color: #ffffff !important;
+		}
+		/* Ocultar secciones por defecto excepto la activa */
+		section {
+			display: none;
+		}
+		section.active {
+			display: block;
+		}
+		
+		/* Estilos de Contacto (Referencia Tanta) */
+		.contact-title {
+			color: #4a1c1c;
+			font-weight: 700;
+			font-size: 2.2rem;
+			letter-spacing: 1px;
+			margin-bottom: 2px;
+		}
+		.contact-subtitle {
+			color: #ff7a00;
+			font-family: 'Georgia', serif;
+			font-style: italic;
+			font-size: 1.5rem;
+			margin-bottom: 20px;
+		}
+		.contact-desc {
+			color: #4a1c1c;
+			font-size: 0.95rem;
+			max-width: 650px;
+			margin: 0 auto 30px auto;
+			line-height: 1.5;
+		}
+		.contact-info-footer {
+			color: #4a1c1c;
+			font-size: 0.85rem;
+			max-width: 650px;
+			margin: 25px auto 0 auto;
+			line-height: 1.6;
+		}
+		.contact-input-yellow {
+			border: 2px solid #d49a37 !important;
+			border-radius: 30px !important;
+			padding: 10px 20px !important;
+			font-size: 0.95rem !important;
+			background-color: #ffffff !important;
+			color: #4a1c1c !important;
+		}
+		.contact-input-yellow::placeholder {
+			color: #a08080 !important;
+			opacity: 0.7;
+		}
+		.contact-input-yellow:focus {
+			box-shadow: 0 0 0 0.2rem rgba(212, 154, 55, 0.25) !important;
+			border-color: #d49a37 !important;
+			outline: none !important;
+		}
+		.contact-input-pink {
+			border: 2px solid #ff007f !important;
+			border-radius: 20px !important;
+			padding: 15px 20px !important;
+			font-size: 0.95rem !important;
+			background-color: #ffffff !important;
+			color: #4a1c1c !important;
+		}
+		.contact-input-pink::placeholder {
+			color: #a08080 !important;
+			opacity: 0.7;
+		}
+		.contact-input-pink:focus {
+			box-shadow: 0 0 0 0.2rem rgba(255, 0, 127, 0.25) !important;
+			border-color: #ff007f !important;
+			outline: none !important;
+		}
+		.contact-label {
+			color: #4a1c1c;
+			font-weight: 600;
+			font-size: 0.9rem;
+			margin-left: 15px;
+			margin-bottom: 5px;
+		}
+		.contact-pill-btn {
+			background-color: #ff007f !important;
+			color: #ffffff !important;
+			border-radius: 50px !important;
+			padding: 10px 35px !important;
+			font-weight: 700 !important;
+			font-size: 0.9rem !important;
+			letter-spacing: 1px;
+			border: none !important;
+			text-transform: uppercase;
+		}
+		.contact-pill-btn:hover {
+			background-color: #cc0066 !important;
+			color: #ffffff !important;
+		}
+		
+		/* Estilos del Footer (Referencia Tanta) */
+		.custom-footer {
+			background-color: #4b2416; /* Color marrón oscuro de Tanta */
+			color: #ffffff;
+			font-size: 0.9rem;
+		}
+		.footer-top {
+			background-color: #4b2416;
+			border-bottom: 5px solid #ff007f; /* Línea de división fucsia */
+		}
+		.footer-heading {
+			color: #ffffff;
+			font-weight: 700;
+			font-size: 0.95rem;
+			letter-spacing: 1px;
+			margin-bottom: 15px;
+		}
+		.footer-links {
+			padding-left: 0;
+			margin-bottom: 0;
+		}
+		.footer-links li {
+			margin-bottom: 8px;
+		}
+		.footer-links a {
+			color: #e0d0cc !important;
+			text-decoration: none;
+			transition: color 0.2s;
+			font-size: 0.85rem;
+		}
+		.footer-links a:hover {
+			color: #ff007f !important;
+		}
+		.footer-bottom {
+			background-color: #ff007f; /* Barra fucsia inferior */
+			color: #ffffff;
+		}
+		.footer-bottom p {
+			font-size: 0.85rem;
+			font-weight: 500;
+		}
+		.social-icon {
+			color: #ffffff;
+			transition: opacity 0.2s, transform 0.2s;
+			display: inline-block;
+		}
+		.social-icon:hover {
+			opacity: 0.8;
+			transform: scale(1.1);
+			color: #ffffff;
+		}
+		
+		/* Marcadores de posición de imagen (Placeholders) */
+		.img-placeholder {
+			background-color: #ede6d6;
+			border: 2px dashed #d49a37;
+			border-radius: 12px;
+			min-height: 120px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #4a1c1c;
+			font-weight: 600;
+			font-size: 0.85rem;
+			text-align: center;
+			padding: 15px;
+			margin-bottom: 15px;
+			opacity: 0.85;
+		}
+		
+		/* Estilos específicos de Inicio */
+		.hero-banner {
+			position: relative;
+			background-color: #3b1717;
+			min-height: 500px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #ffffff;
+			text-align: center;
+			border-bottom: 5px solid #ff7a00;
+		}
+		.hero-placeholder-text {
+			font-size: 1.1rem;
+			color: #ede6d6;
+			opacity: 0.6;
+		}
+		.benefits-strip {
+			background-color: #ff7a00;
+			color: #ffffff;
+			padding: 20px 0;
+			font-weight: 600;
+		}
+		.benefits-btn-white {
+			background-color: #ffffff !important;
+			color: #ff7a00 !important;
+			border: 1px solid #ffffff !important;
+			border-radius: 4px;
+			padding: 6px 15px !important;
+			font-weight: 700;
+		}
+		.benefits-btn-white:hover {
+			background-color: #f7f7f7 !important;
+		}
+		.benefits-btn-pink {
+			background-color: #ff007f !important;
+			color: #ffffff !important;
+			border: 1px solid #ff007f !important;
+			border-radius: 4px;
+			padding: 6px 15px !important;
+			font-weight: 700;
+		}
+		.benefits-btn-pink:hover {
+			background-color: #cc0066 !important;
+		}
+		.dark-featured-card {
+			background-color: #1e110d !important;
+			color: #ffffff !important;
+			border: 1px solid #3b2018 !important;
+			border-radius: 12px !important;
+		}
+		.dish-card {
+			border: none !important;
+			background-color: #ffffff !important;
+			border-radius: 12px !important;
+			box-shadow: 0 4px 6px rgba(0,0,0,0.05) !important;
+			overflow: hidden;
+			transition: transform 0.2s;
+		}
+		.dish-card:hover {
+			transform: translateY(-5px);
+		}
+		.dish-price {
+			color: #ff7a00;
+			font-weight: 700;
+			font-size: 1.1rem;
+		}
+		.dark-community-section {
+			background-color: #ffa000; /* Amarillo/naranja del logo */
+			color: #4a1c1c; /* Texto oscuro para contraste */
+		}
+		.dark-community-section h2 {
+			color: #4a1c1c !important;
+		}
+		.dark-community-section p.text-warning {
+			color: #5c2416 !important;
+		}
+		.dark-community-section .img-placeholder {
+			border-color: rgba(74, 28, 28, 0.35) !important;
+			background-color: rgba(74, 28, 28, 0.06) !important;
+			color: #4a1c1c !important;
+		}
+		
+		/* Carrusel vertical y tarjeta de locales */
+		.locales-scroll-container::-webkit-scrollbar {
+			width: 6px;
+		}
+		.locales-scroll-container::-webkit-scrollbar-track {
+			background: rgba(74, 28, 28, 0.05);
+			border-radius: 10px;
+		}
+		.locales-scroll-container::-webkit-scrollbar-thumb {
+			background: #ff7a00;
+			border-radius: 10px;
+		}
+		.locales-scroll-container::-webkit-scrollbar-thumb:hover {
+			background: #ff007f;
+		}
+		.local-card {
+			transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+		}
+		.local-card:hover {
+			transform: translateX(4px);
+			box-shadow: 0 4px 8px rgba(0,0,0,0.08) !important;
+		}
+		.local-card-active {
+			background-color: #ff007f !important;
+			transform: scale(1.02) translateX(4px) !important;
+			box-shadow: 0 4px 10px rgba(255,0,127,0.2) !important;
+		}
+		.local-card-active h6, 
+		.local-card-active p, 
+		.local-card-active span {
+			color: #ffffff !important;
+		}
+		.local-card-active button {
+			background-color: #ffffff !important;
+			color: #ff007f !important;
+		}
+		.insta-widget-card {
+			background-color: #ffffff !important;
+			color: #4a1c1c !important;
+			border-radius: 12px !important;
+			border: none !important;
+			box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-expand-lg shadow-sm fixed-top custom-navbar">
+		<div class="container">
+			<a class="navbar-brand d-flex align-items-center" href="#inicio">
+				<img src="imagenes/tanta-logo.png" alt="Logo" class="img-fluid" style="max-height: 40px;">
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="menu">
+				<ul class="navbar-nav ms-auto align-items-center">
+					<li class="nav-item"><a class="nav-link custom-nav-link fw-semibold active-nav" href="#inicio">INICIO</a></li>
+					<li class="nav-item"><a class="nav-link custom-nav-link fw-semibold" href="#carta">NUESTRA CARTA</a></li>
+					<li class="nav-item"><a class="nav-link custom-nav-link fw-semibold" href="#nosotros">NOSOTROS</a></li>
+					<li class="nav-item"><a class="nav-link custom-nav-link fw-semibold" href="#servicios">SERVICIOS</a></li>
+					<li class="nav-item"><a class="nav-link custom-nav-link fw-semibold" href="#contacto">CONTACTO</a></li>
+					<li class="nav-item ms-lg-2"><a class="nav-link custom-nav-link fw-semibold" href="#locales">LOCALES</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- CONTENEDOR PRINCIPAL DE SECCIONES -->
+	<main class="flex-grow-1">
+	<!-- INICIO -->
+	<section id="inicio" class="container-fluid px-0 active">
+		<!-- Hero/Banner Principal (Carrusel) -->
+		<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+				<button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+			</div>
+			
+			<div class="carousel-inner">
+				<!-- Banner 1 -->
+				<div class="carousel-item active">
+					<div class="hero-banner" style="background-image: url('imagenes/inicio/banner 1.jpeg'); background-size: cover; background-position: center;">
+						<!-- Dark overlay for better text readability -->
+						<div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+						
+						<div class="position-relative z-1 container py-5 text-center text-md-start">
+							<div class="row align-items-center">
+								<div class="col-md-7 col-sm-12 text-white">
+									<div class="d-flex align-items-center justify-content-center justify-content-md-start mb-3">
+										<img src="imagenes/icono corazon.png" alt="Icono Corazón" style="max-height: 45px;" class="me-2">
+										<h1 class="fw-bold mb-0" style="font-size: 3.5rem; letter-spacing: 2px;">LO QUE SOMOS</h1>
+										<span class="fs-2 ms-2"></span>
+									</div>
+									<h2 class="fs-4 mb-4 fw-light" style="color: #ede6d6;">Se refleja en cada sabor peruano que compartimos...</h2>
+									<div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-md-start mt-4">
+										<a href="#locales" class="btn custom-btn px-4 py-2 fw-bold" style="border-radius: 5px;">VER LOCALES</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Banner 2 -->
+				<div class="carousel-item">
+					<div class="hero-banner" style="background-image: url('imagenes/inicio/banner 2.jpeg'); background-size: cover; background-position: center;">
+						<!-- Dark overlay for better text readability -->
+						<div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+						
+						<div class="position-relative z-1 container py-5 text-center text-md-start">
+							<div class="row align-items-center">
+								<div class="col-md-7 col-sm-12 text-white">
+									<div class="d-flex align-items-center justify-content-center justify-content-md-start mb-3">
+										<img src="imagenes/icono corazon.png" alt="Icono Corazón" style="max-height: 45px;" class="me-2">
+										<h1 class="fw-bold mb-0" style="font-size: 3.5rem; letter-spacing: 2px;">TRADICIÓN</h1>
+										<span class="fs-2 ms-2"></span>
+									</div>
+									<h2 class="fs-4 mb-4 fw-light" style="color: #ede6d6;">El verdadero sabor que nos une en cada plato...</h2>
+									<div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-md-start mt-4">
+										<a href="#carta" class="btn custom-btn px-4 py-2 fw-bold" style="border-radius: 5px;">VER CARTA</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Banner 3 -->
+				<div class="carousel-item">
+					<div class="hero-banner" style="background-image: url('imagenes/inicio/banner 3.jpeg'); background-size: cover; background-position: center;">
+						<!-- Dark overlay for better text readability -->
+						<div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+						
+						<div class="position-relative z-1 container py-5 text-center text-md-start">
+							<div class="row align-items-center">
+								<div class="col-md-7 col-sm-12 text-white">
+									<div class="d-flex align-items-center justify-content-center justify-content-md-start mb-3">
+										<img src="imagenes/icono corazon.png" alt="Icono Corazón" style="max-height: 45px;" class="me-2">
+										<h1 class="fw-bold mb-0" style="font-size: 3.5rem; letter-spacing: 2px;">FAMILIA</h1>
+										<span class="fs-2 ms-2">️</span>
+									</div>
+									<h2 class="fs-4 mb-4 fw-light" style="color: #ede6d6;">Momentos inolvidables con los que más quieres...</h2>
+									<div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-md-start mt-4">
+										<a href="#servicios" class="btn custom-btn px-4 py-2 fw-bold" style="border-radius: 5px;">CONOCE MÁS</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Controles -->
+			<button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Anterior</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Siguiente</span>
+			</button>
+		</div>
+
+
+
+		<!-- Nuevos Sabores Auténticos -->
+		<div class="container py-5 text-start">
+			<div class="text-center mb-5">
+				<div class="mb-2">
+					<img src="imagenes/icono corazon.png" alt="Icono Corazón" style="max-height: 40px;">
+				</div>
+				<h2 class="fw-bold" style="color: #4a1c1c; font-size: 2.2rem; letter-spacing: 1px;">NUEVOS SABORES AUTÉNTICOS</h2>
+				<p class="text-muted">Descubre nuestras últimas creaciones preparadas con el alma y sazón peruana.</p>
+			</div>
+
+			<div class="row mt-4">
+				<!-- Carta Destacada Izquierda -->
+				<div class="col-md-5 col-sm-12 mb-4 mb-md-0">
+					<div class="card dark-featured-card h-100 p-4">
+						<div class="card-body d-flex flex-column justify-content-between">
+							<div>
+								<h4 class="fw-bold mb-3 text-warning">EN TANTA DEBES SABER QUE...</h4>
+								<h5 class="fw-bold mb-4" style="color: #ede6d6; line-height: 1.5;">
+									¡NUESTRO AMOR POR LO NUESTRO, HACE QUE CADA PLATO SEA UNA CELEBRACIÓN!
+								</h5>
+								
+								<img src="imagenes/inicio/Causa Rellena de Pollo.jpg" alt="Causa Rellena" class="w-100 object-fit-cover rounded" style="height: 220px;">
+								
+								<div class="d-flex justify-content-between align-items-center mt-3 mb-2">
+									<h6 class="mb-0 fw-bold">Causa Rellena de Pollo</h6>
+									<span class="fw-bold text-warning fs-5">S/ 14.00</span>
+								</div>
+								<p class="text-white-50 mb-0" style="font-size: 0.85rem; line-height: 1.4;">
+									Nuestra clásica masa suave de papa amarilla al toque de ají y limón, rellena con jugoso pollo deshilachado, palta fresca y mayonesa casera. ¡Un verdadero imperdible!
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Grid de Platos Derecha -->
+				<div class="col-md-7 col-sm-12">
+					<div class="row">
+						<!-- Plato 1 -->
+						<div class="col-sm-6 mb-4">
+							<div class="card dish-card p-3 h-100">
+								<img src="imagenes/inicio/aji de gallina inicio.jpeg" alt="Ají de Gallina" class="w-100 object-fit-cover rounded-top" style="height: 140px;">
+								<div class="card-body p-2 text-start">
+									<h6 class="fw-bold mb-1" style="color: #4a1c1c;">Ají de Gallina</h6>
+									<p class="text-muted mb-2" style="font-size: 0.8rem;">Pollo deshilachado con salsa cremosa de ají amarillo, papas y arroz.</p>
+									<span class="dish-price">S/. 39.90</span>
+								</div>
+							</div>
+						</div>
+						<!-- Plato 2 -->
+						<div class="col-sm-6 mb-4">
+							<div class="card dish-card p-3 h-100">
+								<img src="imagenes/inicio/lomo saltado inicio.jpeg" alt="Lomo Saltado" class="w-100 object-fit-cover rounded-top" style="height: 140px;">
+								<div class="card-body p-2 text-start">
+									<h6 class="fw-bold mb-1" style="color: #4a1c1c;">Lomo Saltado</h6>
+									<p class="text-muted mb-2" style="font-size: 0.8rem;">Trozos de lomo salteados al wok con cebolla, tomate, papas fritas y arroz.</p>
+									<span class="dish-price">S/. 39.90</span>
+								</div>
+							</div>
+						</div>
+						<!-- Plato 3 -->
+						<div class="col-sm-6 mb-4">
+							<div class="card dish-card p-3 h-100">
+								<img src="imagenes/inicio/arroz con pollo inicio.jpeg" alt="Arroz con Pollo" class="w-100 object-fit-cover rounded-top" style="height: 140px;">
+								<div class="card-body p-2 text-start">
+									<h6 class="fw-bold mb-1" style="color: #4a1c1c;">Arroz con Pollo</h6>
+									<p class="text-muted mb-2" style="font-size: 0.8rem;">Tradicional arroz con culantro cocido con pollo tierno y salsa criolla.</p>
+									<span class="dish-price">S/. 39.90</span>
+								</div>
+							</div>
+						</div>
+						<!-- Plato 4 -->
+						<div class="col-sm-6 mb-4">
+							<div class="card dish-card p-3 h-100">
+								<img src="imagenes/inicio/postre  inicio.jpeg" alt="Postre" class="w-100 object-fit-cover rounded-top" style="height: 140px;">
+								<div class="card-body p-2 text-start">
+									<h6 class="fw-bold mb-1" style="color: #4a1c1c;">Suspiro a la Limeña</h6>
+									<p class="text-muted mb-2" style="font-size: 0.8rem;">Clásico manjar blanco cubierto de merengue aromatizado con oporto.</p>
+									<span class="dish-price">S/. 29.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="text-center mt-3">
+						<a href="#carta" class="btn px-4 py-2 text-white fw-bold" style="background-color: #ff7a00; border-radius: 5px;">VER MÁS CARTA</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Nuestra Comunidad (Sección Marrón) -->
+		<div class="dark-community-section py-5 text-white">
+			<div class="container text-start">
+				<div class="text-center mb-5">
+					<div class="mb-2">
+						<img src="imagenes/icono corazon.png" alt="Corazón" style="max-height: 35px; filter: brightness(0) invert(1);">
+					</div>
+					<h2 class="fw-bold mb-1" style="letter-spacing: 1px;">NUESTRA COMUNIDAD</h2>
+					<p class="text-warning">Menciónanos al tomar tu foto</p>
+				</div>
+				
+				<div class="row align-items-center">
+					<!-- Widget Instagram -->
+					<div class="col-md-5 col-sm-12 mb-4 mb-md-0">
+						<div class="card insta-widget-card p-4">
+							<div class="d-flex align-items-center justify-content-between mb-4">
+								<div class="d-flex align-items-center">
+									<img src="imagenes/inicio/perfil ig.jpg" alt="Tanta" class="rounded-circle me-2 object-fit-cover" style="width: 45px; height: 45px;">
+									<div>
+										<h6 class="mb-0 fw-bold" style="color: #4a1c1c;">@tantaperu</h6>
+										<small class="text-muted">Tanta Restaurante</small>
+									</div>
+								</div>
+								<a href="https://www.instagram.com/tanta_peru/?hl=es" target="_blank" class="btn btn-dark btn-sm px-3 fw-bold" style="border-radius: 20px;">Seguir</a>
+							</div>
+							
+							<div class="row g-2">
+								<div class="col-6">
+									<img src="imagenes/inicio/pisco sour instagram.jpeg" alt="Pisco Sour" class="w-100 object-fit-cover rounded" style="height: 110px;">
+								</div>
+								<div class="col-6">
+									<img src="imagenes/inicio/causa instagram.jpeg" alt="Causa" class="w-100 object-fit-cover rounded" style="height: 110px;">
+								</div>
+								<div class="col-6">
+									<img src="imagenes/inicio/ceviche instagram.jpeg" alt="Ceviche" class="w-100 object-fit-cover rounded" style="height: 110px;">
+								</div>
+								<div class="col-6">
+									<img src="imagenes/inicio/lomo instagram.jpeg" alt="Lomo Instagram" class="w-100 object-fit-cover rounded" style="height: 110px;">
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Grid Social Media Posts -->
+					<div class="col-md-7 col-sm-12">
+						<div class="row g-3">
+							<div class="col-6 col-sm-4">
+								<img src="imagenes/inicio/trago inicio.jpeg" alt="Trago" class="w-100 object-fit-cover rounded" style="height: 250px;">
+							</div>
+							<div class="col-6 col-sm-4">
+								<img src="imagenes/inicio/lomo saltado inicio.jpeg" alt="Lomo Saltado Wok" class="w-100 object-fit-cover rounded" style="height: 250px;">
+							</div>
+							<div class="col-sm-4 d-none d-sm-block">
+								<div class="row g-3">
+									<div class="col-12">
+										<img src="imagenes/inicio/anticucho inicio.jpeg" alt="Anticuchos" class="w-100 object-fit-cover rounded" style="height: 118px;">
+									</div>
+									<div class="col-12">
+										<img src="imagenes/inicio/alfajor inicio.jpeg" alt="Alfajor" class="w-100 object-fit-cover rounded" style="height: 118px;">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Únete a Nuestro Equipo -->
+		<div class="container py-5 text-start">
+			<div class="row align-items-center">
+				<div class="col-md-5 col-sm-12 mb-4 mb-md-0">
+					<div class="mb-3 text-start">
+						<img src="imagenes/icono corazon.png" alt="Corazón" style="max-height: 35px;">
+					</div>
+					<h2 class="fw-bold mb-3" style="color: #4a1c1c; font-size: 2.2rem; line-height: 1.2;">ÚNETE A NUESTRO EQUIPO</h2>
+					<p class="text-muted mb-4" style="font-size: 0.95rem; line-height: 1.6;">
+						¿Quieres formar parte de nuestra familia? Estamos en búsqueda de personas apasionadas, comprometidas y que busquen crecer en el apasionante mundo gastronómico peruano.
+					</p>
+					<a href="#contacto" class="btn text-white fw-bold px-4 py-2" style="background-color: #ff007f; border-radius: 5px;">TRABAJA CON NOSOTROS</a>
+				</div>
+				
+				<div class="col-md-7 col-sm-12">
+					<img src="imagenes/inicio/equipo.jpeg" alt="Equipo de Cocineros" class="w-100 object-fit-cover rounded" style="height: 350px; min-height: 300px;">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CARTA -->
+	<section id="carta" class="container mt-5 pt-5">
+		<div class="mb-4 text-center d-md-none">
+			<img src="imagenes/icono corazon.png" alt="Icono Corazón" style="max-height: 40px;">
+			<h2 class="fw-bold mt-2" style="color: #4a1c1c; font-size: 2.2rem;">NUESTRA CARTA</h2>
+		</div>
+		
+		<!-- Entradas -->
+		<div class="row mb-5 pb-4 border-bottom" style="border-color: #ede6d6 !important;">
+			<!-- Side Info -->
+			<div class="col-lg-3 col-md-4 mb-4">
+				<div class="d-none d-md-block mb-3">
+					<img src="imagenes/icono corazon.png" alt="Icono" style="max-height: 35px; filter: grayscale(100%) sepia(100%) hue-rotate(320deg) saturate(300%) contrast(150%);">
+				</div>
+				<h2 class="fw-bold" style="color: #1a1a1a; font-size: 2rem;">Entradas</h2>
+				<p class="text-muted mt-2" style="font-size: 0.85rem; line-height: 1.5;">Nuestras opciones favoritas para empezar con auténtico sabor.</p>
+			</div>
+			<!-- Grid -->
+			<div class="col-lg-9 col-md-8">
+				<div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-lg-3">
+					<!-- Card 1 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/Causa-limeña.jpg.jpeg" alt="Causa Limeña de Pollo" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Causa Limeña de Pollo</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Prensa de papa amarilla con ají amarillo, rellena de pollo, mayonesa y palta.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 24.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Card 2 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/Papa-a-la-Huancaina-.jpg.jpeg" alt="Papa a la Huancaína" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Papa a la Huancaína</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Clásicas papas cocidas bañadas en una salsa cremosa de ají amarillo, queso y leche.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 22.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Card 3 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/Anticuchos.jpg.jpeg" alt="Anticuchos Corazón" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Anticuchos Corazón</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Palitos de corazón de res marinados en ají panca a la parrilla, con papa dorada.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 28.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Card 4 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/Tequenos.jpg.jpeg" alt="Tequeños de Lomo Saltado" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Tequeños de Lomo Saltado</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Tequeños crujientes rellenos de nuestro jugoso lomo saltado, acompañados de salsa a la huancaína.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 20.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Card 5 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/chicharron-de-calamar.jpg.jpeg" alt="Chicharrón de Calamar" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Chicharrón de Calamar</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Anillos de calamar arrebozados súper crujientes con salsa tártara y yucas fritas.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 32.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Card 6 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/empanada.jpg.jpeg" alt="Empanada de Ají de Gallina" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Empanada de Ají de Gallina</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Masa horneada y dorada, rellena de un guiso cremoso de ají de gallina.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 12.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Platos de Fondo -->
+		<div class="row mb-5 pb-4 border-bottom" style="border-color: #ede6d6 !important;">
+			<div class="col-lg-3 col-md-4 mb-4">
+				<h2 class="fw-bold" style="color: #1a1a1a; font-size: 2rem;">Platos de Fondo</h2>
+				<p class="text-muted mt-2" style="font-size: 0.85rem; line-height: 1.5;">Los mejores platos tradicionales preparados con nuestra sazón secreta.</p>
+			</div>
+			<div class="col-lg-9 col-md-8">
+				<div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-lg-3">
+					<!-- Card 1 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/LOMO_SALTADO.jpg.jpeg" alt="Lomo Saltado Tanta" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Lomo Saltado Tanta</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Cortes de lomo fino salteados al wok con cebolla, tomate. Servido con papas y arroz.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 48.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Card 2 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/AJI DE GALLLLINA.jpg.jpeg" alt="Ají de Gallina" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Ají de Gallina</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Guiso tradicional de pollo deshilachado en una salsa cremosa de ají amarillo y nueces.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 39.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Card 3 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/CEVICHE.jpg.jpeg" alt="Ceviche Clásico" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Ceviche Clásico</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Pesca del día marinada al instante en limón y ají limo. Acompañado de camote.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 44.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Card 4 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/ARROZ CON POLLO.jpg.jpeg" alt="Arroz con Pollo Peruano" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Arroz con Pollo Peruano</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Guisado en culantro y cerveza, acompañado con sarsa criolla clásica y papa a la huancaína.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 35.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Card 5 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/tacu-tacu-de-frejoles-2.jpg.jpeg" alt="Tacu Tacu con Lomo" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Tacu Tacu con Lomo</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Crocante mezcla de frijoles y arroz, cubierto con nuestro tradicional lomo saltado jugoso.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 52.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Card 6 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/SECO_DE_CABRITO.jpg.jpeg" alt="Seco de Cabrito Norteño" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Seco de Cabrito Norteño</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Macerado en chicha de jora y culantro, tierno cabrito con frejoles cremosos y arroz blanco.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 46.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Postres y Bebidas -->
+		<div class="row mb-5">
+			<div class="col-lg-3 col-md-4 mb-4">
+				<h2 class="fw-bold" style="color: #1a1a1a; font-size: 2rem;">Postres y Bebidas</h2>
+				<p class="text-muted mt-2" style="font-size: 0.85rem; line-height: 1.5;">El dulce final perfecto y las bebidas más refrescantes.</p>
+			</div>
+			<div class="col-lg-9 col-md-8">
+				<div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-lg-3">
+					<!-- Card 1 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/suspiro-de-limena-de-maracuya-1.jpg.jpeg" alt="Suspiro de Limeña de Maracuyá" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Suspiro de Limeña de Maracuyá</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Exquisito manjar blanco de yemas con el toque tropical y ácido del maracuyá, coronado con merengue al oporto.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 18.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Card 2 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/CHICA MORADA.jpg.jpeg" alt="Chicha Morada Tanta" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Chicha Morada Tanta</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Infusión tradicional de maíz morado hervido con piña, manzana, especias y limón.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 10.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Card 3 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/PISCO.jpg.jpeg" alt="Pisco Sour Clásico" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Pisco Sour Clásico</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Pisco Quebranta puro, limón sutil, jarabe de goma y amargo de angostura.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 24.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Card 4 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/crema-volteada-ajustada-web.jpg.jpeg" alt="Crema Volteada" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Crema Volteada</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Clásico postre peruano bañado en caramelo oscuro, suave y con un toque de vainilla.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 16.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Card 5 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/picarones.jpg.jpeg" alt="Picarones Tradicionales" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Picarones Tradicionales</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Porción de 4 aros de masa de zapallo y camote, bañados en rica miel de chancaca con higo.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 14.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Card 6 -->
+					<div class="col">
+						<div class="card h-100 border-0 shadow-sm rounded-0" style="background-color: #ffffff;">
+							<img src="imagenes/carta/limonada-frozen.jpg.jpeg" alt="Limonada Frozen c/ Hierbabuena" class="w-100 object-fit-cover rounded-0" style="height: 160px;">
+							<div class="card-body d-flex flex-column p-3">
+								<h6 class="fw-bold mb-1" style="color: #1a1a1a; font-size: 0.95rem;">Limonada Frozen c/ Hierbabuena</h6>
+								<p class="text-muted small mb-3" style="font-size: 0.75rem; line-height: 1.4;">Limón sutil, mucho hielo triturado y hojas frescas de hierbabuena. Ultra refrescante.</p>
+								<div class="mt-auto text-end">
+									<span class="fw-bold" style="color: #e63946; font-size: 1.1rem;">S/ 12.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- NOSOTROS -->
+	<section id="nosotros" class="container-fluid px-0 mt-5 pt-4">
+		<!-- Banner Principal -->
+		<div class="position-relative text-center py-5 text-white" style="background-image: url('imagenes/nosotros/banner nosotros.jpeg'); background-size: cover; background-position: center; min-height: 350px; display: flex; align-items: center; justify-content: center;">
+			<!-- Dark overlay for better text readability -->
+			<div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0, 0, 0, 0.5); border-bottom: 4px solid #ff007f;"></div>
+			
+			<div class="position-relative z-1 container">
+				<div class="text-center mb-2">
+					<img src="imagenes/icono corazon.png" alt="Icono Corazón" class="img-fluid" style="max-height: 50px;">
+				</div>
+				<h1 class="fw-bold text-uppercase" style="color: #ff007f; font-size: 3rem; letter-spacing: 2px;">Nosotros</h1>
+				<p class="mx-auto fs-5" style="max-width: 700px; color: #ede6d6;">
+					Conoce nuestra historia, nuestra pasión por la cocina peruana y nuestro compromiso con la diversidad.
+				</p>
+			</div>
+		</div>
+
+		<!-- Nuestros Inicios y El Sueño -->
+		<div class="container py-5 text-start">
+			<div class="row align-items-center">
+				<!-- Hitos de Historia -->
+				<div class="col-md-4 col-sm-12 mb-4 mb-md-0">
+					<h3 class="fw-bold mb-4" style="color: #4a1c1c;"><span style="color: #ff7a00;"></span> Nuestros Inicios</h3>
+					<ul class="list-unstyled" style="line-height: 1.8; color: #4a1c1c;">
+						<li class="mb-3">
+							<span class="fw-bold" style="color: #ff7a00;">2003 - Fundación</span><br>
+							<small class="text-muted">Abrimos nuestras puertas en Surco con mucha ilusión.</small>
+						</li>
+						<li class="mb-3">
+							<span class="fw-bold" style="color: #ff7a00;">Visión de Gastón Acurio</span><br>
+							<small class="text-muted">Llevar la comida criolla casera a un formato moderno y accesible.</small>
+						</li>
+						<li class="mb-3">
+							<span class="fw-bold" style="color: #ff7a00;">Expansión Nacional</span><br>
+							<small class="text-muted">Inauguramos nuevos locales compartiendo nuestra sazón en Lima y el Perú.</small>
+						</li>
+						<li class="mb-3">
+							<span class="fw-bold" style="color: #ff7a00;">Tanta en el Mundo</span><br>
+							<small class="text-muted">Exportamos nuestra cultura y sabor peruano a nivel internacional.</small>
+						</li>
+					</ul>
+				</div>
+				
+				<!-- Breve Historia (Nació el Sueño) -->
+				<div class="col-md-4 col-sm-12 mb-4 mb-md-0">
+					<h3 class="fw-bold mb-3" style="color: #4a1c1c;">2003: Nació el Sueño Tanta</h3>
+					<p style="font-size: 0.95rem; line-height: 1.6; color: #4a1c1c;">
+						La aventura comenzó en Surco, Lima, impulsada por el deseo de compartir la calidez y el sabor único de la cocina criolla peruana en un espacio familiar, cercano y acogedor.
+					</p>
+					<img src="imagenes/nosotros/primer restaurante.jpg" alt="Primer Restaurante" class="w-100 object-fit-cover rounded mt-3" style="height: 150px;">
+				</div>
+				
+				<!-- Imagen Principal (Fundador) -->
+				<div class="col-md-4 col-sm-12 mb-4 mb-md-0">
+					<img src="imagenes/nosotros/fundador.jpeg" alt="Fundador" class="w-100 object-fit-cover rounded" style="height: 300px;">
+				</div>
+			</div>
+		</div>
+
+		<!-- Quiénes Somos e Imágenes Grid -->
+		<div class="container py-5 text-start border-top" style="border-color: #ede6d6 !important;">
+			<div class="row align-items-center">
+				<!-- Grid de Imágenes -->
+				<div class="col-md-6 col-sm-12 mb-4 mb-md-0">
+					<div class="row">
+						<div class="col-6 mb-3">
+							<img src="imagenes/nosotros/platillos.jpeg" alt="Platillos" class="w-100 object-fit-cover rounded" style="height: 180px;">
+						</div>
+						<div class="col-6 mb-3">
+							<img src="imagenes/nosotros/brasas.jpg" alt="Brasas" class="w-100 object-fit-cover rounded" style="height: 180px;">
+						</div>
+						<div class="col-12">
+							<img src="imagenes/nosotros/Comensales en Mesa.avif" alt="Comensales en Mesa" class="w-100 object-fit-cover rounded" style="height: 180px;">
+						</div>
+					</div>
+				</div>
+				
+				<!-- Quienes Somos Content -->
+				<div class="col-md-6 col-sm-12 ps-md-5">
+					<div class="mb-2">
+						<img src="imagenes/icono corazon.png" alt="Icono Corazón" class="img-fluid" style="max-height: 45px;">
+					</div>
+					<h2 class="fw-bold mb-4" style="color: #ff007f; font-size: 2.2rem;">QUIÉNES SOMOS</h2>
+					
+					<div class="mb-4">
+						<h5 class="fw-bold" style="color: #4a1c1c;"><span style="color: #ff7a00;"></span> NUESTRA MISIÓN</h5>
+						<p class="text-muted" style="font-size: 0.9rem;">
+							Brindar experiencias culinarias memorables a través de la auténtica comida criolla peruana, ofreciendo platos caseros de alta calidad en un ambiente cálido y familiar, donde cada invitado se sienta como en casa.
+						</p>
+					</div>
+					
+					<div class="mb-4">
+						<h5 class="fw-bold" style="color: #4a1c1c;"><span style="color: #ff7a00;"></span> NUESTRA VISIÓN</h5>
+						<p class="text-muted" style="font-size: 0.9rem;">
+							Ser el restaurante referente de la gastronomía casera peruana a nivel nacional e internacional, llevando con orgullo nuestros sabores tradicionales, cultura y hospitalidad a todos los rincones del mundo.
+						</p>
+					</div>
+					
+					<img src="imagenes/nosotros/nuestro local.jpeg" alt="Nuestro Local" class="w-100 object-fit-cover rounded mt-4" style="height: 180px;">
+				</div>
+			</div>
+		</div>
+
+		<!-- Nuestros Valores (Fondo Fucsia) -->
+		<div class="py-5 text-white" style="background-color: #b0005a; border-top: 5px solid #ff7a00;">
+			<div class="container text-start">
+				<div class="text-center mb-3">
+					<svg width="50" height="35" viewBox="0 0 70 50" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block;">
+						<path d="M22 10 C16 10 12 14 12 20 C12 26 18 31 23 35 L23 40 L27 37 C29 37.5 30.5 37.5 31.5 37.5 C27 34 24.5 29 24.5 23.5 C24.5 16.5 29.5 11 35.5 10 C31 10 26.5 10 22 10 Z" fill="#ffffff" />
+						<path d="M43.5 15 C37.7 15 33 19.7 33 25.5 C33 31.3 37.7 36 43.5 36 C45.5 36 47.5 35.5 49 34.5 L53 37.5 L53 33 C55 31 56.5 28.5 56.5 25.5 C56.5 19.7 51.8 15 43.5 15 Z" fill="#ff7a00" style="mix-blend-mode: screen;"/>
+					</svg>
+					<h2 class="fw-bold mt-2 text-center" style="color: #ffffff; letter-spacing: 1px;">NUESTROS VALORES</h2>
+				</div>
+				
+				<div class="row mt-5">
+					<!-- Valores Columna Izquierda -->
+					<div class="col-md-4 col-sm-12 mb-4 mb-md-0">
+						<div class="mb-4">
+							<h5 class="fw-bold text-warning">PASIÓN POR EL SABOR</h5>
+							<p style="font-size: 0.85rem; color: #f5dcd3;">
+								En cada receta ponemos nuestro corazón, honrando las tradiciones gastronómicas peruanas.
+							</p>
+						</div>
+						<div class="mb-4">
+							<h5 class="fw-bold text-warning">SERVICIO CERCANO</h5>
+							<p style="font-size: 0.85rem; color: #f5dcd3;">
+								Atención dedicada, amable y familiar para construir relaciones duraderas con cada cliente.
+							</p>
+						</div>
+						<div class="mb-4">
+							<h5 class="fw-bold text-warning">CALIDAD ARTESANAL</h5>
+							<p style="font-size: 0.85rem; color: #f5dcd3;">
+								Procesos cuidados de repostería y cocina con insumos frescos garantizando una experiencia deliciosa.
+							</p>
+						</div>
+					</div>
+					
+					<!-- Imagen Centro -->
+					<div class="col-md-4 col-sm-12 mb-4 mb-md-0">
+						<img src="imagenes/nosotros/cocinamos con valores.jpeg" alt="Cocinando con Pasión" class="w-100 object-fit-cover rounded shadow-sm" style="height: 300px;">
+					</div>
+					
+					<!-- Valores Columna Derecha -->
+					<div class="col-md-4 col-sm-12">
+						<div class="mb-4">
+							<h5 class="fw-bold text-warning">DIVERSIDAD</h5>
+							<p style="font-size: 0.85rem; color: #f5dcd3;">
+								Celebramos la variedad de paisajes, personas y culturas de todo el Perú en nuestra propuesta.
+							</p>
+						</div>
+						<div class="mb-4">
+							<h5 class="fw-bold text-warning">SOSTENIBILIDAD</h5>
+							<p style="font-size: 0.85rem; color: #f5dcd3;">
+								Trabajamos de la mano con agricultores y productores locales respetando el medio ambiente.
+							</p>
+						</div>
+						<div class="mb-4">
+							<h5 class="fw-bold text-warning">COMPROMISO</h5>
+							<p style="font-size: 0.85rem; color: #f5dcd3;">
+								Buscamos superarnos constantemente para brindar la mayor generosidad en cada plato.
+							</p>
+						</div>
+						<img src="imagenes/nosotros/Comunidad Tanta.jpeg" alt="Comunidad Tanta" class="w-100 object-fit-cover rounded shadow-sm" style="height: 120px;">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SERVICIOS -->
+	<section id="servicios" class="container text-center mt-5 pt-5">
+		<h2 class="fw-bold text-uppercase mb-4" style="color: #4a1c1c; font-size: 2.2rem; letter-spacing: 1px;">
+			ORGANIZA TU EVENTO INOLVIDABLE CON EL SABOR DE TANTA
+		</h2>
+		
+		<div class="row mt-5 justify-content-center">
+			<!-- Card 1: Buffet Temático Criollo -->
+			<div class="col-lg-4 col-md-12 mb-4">
+				<div class="card h-100 border-0 shadow-sm overflow-hidden dish-card" style="border-radius: 15px; background-color: #ffffff; box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;">
+					<div class="row g-0 h-100 align-items-stretch">
+						<div class="col-5">
+							<img src="imagenes/servicios/Buffet Criollo.png" alt="Buffet Criollo" class="w-100 h-100 object-fit-cover" style="min-height: 250px;">
+						</div>
+						<div class="col-7 p-3 text-start d-flex flex-column justify-content-between">
+							<div>
+								<h5 class="fw-bold mb-2" style="color: #4a1c1c; font-size: 0.95rem; line-height: 1.2;">BUFFET TEMÁTICO CRIOLLO</h5>
+								<p class="text-muted mb-3" style="font-size: 0.78rem; line-height: 1.4;">
+									Disfruta de la riqueza de nuestra cocina con una auténtica experiencia criolla. Ideal para celebraciones familiares y cumpleaños.
+								</p>
+								<ul class="list-unstyled mb-3" style="font-size: 0.78rem; color: #4a1c1c; line-height: 1.5;">
+									<li>• Platos tradicionales</li>
+									<li>• Decoración temática opcional</li>
+								</ul>
+							</div>
+							<div>
+								<a href="#contacto" class="btn text-white fw-bold py-2 w-100" style="background-color: #ff007f; border-radius: 20px; font-size: 0.8rem; border: none;">Ver Menú</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Card 2: Mini Buffet Infantil -->
+			<div class="col-lg-4 col-md-12 mb-4">
+				<div class="card h-100 border-0 shadow-sm overflow-hidden dish-card" style="border-radius: 15px; background-color: #ffffff; box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;">
+					<div class="row g-0 h-100 align-items-stretch">
+						<div class="col-5">
+							<img src="imagenes/servicios/Buffet Infantil.png" alt="Buffet Infantil" class="w-100 h-100 object-fit-cover" style="min-height: 250px;">
+						</div>
+						<div class="col-7 p-3 text-start d-flex flex-column justify-content-between">
+							<div>
+								<h5 class="fw-bold mb-2" style="color: #4a1c1c; font-size: 0.95rem; line-height: 1.2;">MINI BUFFET INFANTIL</h5>
+								<p class="text-muted mb-3" style="font-size: 0.78rem; line-height: 1.4;">
+									Un menú diseñado para los más pequeños, saludable, delicioso y visualmente atractivo. Creaciones divertidas que encantarán.
+								</p>
+								<ul class="list-unstyled mb-3" style="font-size: 0.78rem; color: #4a1c1c; line-height: 1.5;">
+									<li>• Menús personalizados</li>
+									<li>• Presentación lúdica</li>
+									<li>• Opciones sin alérgenos</li>
+								</ul>
+							</div>
+							<div>
+								<a href="#contacto" class="btn text-white fw-bold py-2 w-100" style="background-color: #ffa000; border-radius: 20px; font-size: 0.8rem; border: none;">Más Información</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Card 3: Cenas Corporativas -->
+			<div class="col-lg-4 col-md-12 mb-4">
+				<div class="card h-100 border-0 shadow-sm overflow-hidden dish-card" style="border-radius: 15px; background-color: #ffffff; box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;">
+					<div class="row g-0 h-100 align-items-stretch">
+						<div class="col-5">
+							<img src="imagenes/servicios/Cenas Corporativas.png" alt="Cenas Corporativas" class="w-100 h-100 object-fit-cover" style="min-height: 250px;">
+						</div>
+						<div class="col-7 p-3 text-start d-flex flex-column justify-content-between">
+							<div>
+								<h5 class="fw-bold mb-2" style="color: #4a1c1c; font-size: 0.95rem; line-height: 1.2;">CENAS CORPORATIVAS</h5>
+								<p class="text-muted mb-3" style="font-size: 0.78rem; line-height: 1.4;">
+									Impresiona a tus clientes y colaboradores con una experiencia de primer nivel. Ambientes privados y menús personalizados.
+								</p>
+								<ul class="list-unstyled mb-3" style="font-size: 0.78rem; color: #4a1c1c; line-height: 1.5;">
+									<li>• Menús de autor</li>
+									<li>• Ambiente refinado</li>
+									<li>• Servicio de catering</li>
+								</ul>
+							</div>
+							<div>
+								<a href="#contacto" class="btn text-white fw-bold py-2 w-100" style="background-color: #ff007f; border-radius: 20px; font-size: 0.8rem; border: none;">Cotizar Evento</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CONTACTO -->
+	<section id="contacto" class="container text-center mt-5 pt-5">
+		<div class="text-center mb-2">
+			<img src="imagenes/icono corazon.png" alt="Icono Corazón" class="img-fluid" style="max-height: 75px;">
+		</div>
+		
+		<h2 class="contact-title">CONTÁCTANOS</h2>
+		<h3 class="contact-subtitle">para estar más cerca</h3>
+		
+		<p class="contact-desc">
+			En TANTA valoramos tu opinión. Háznoslo saber si tienes alguna consulta, sugerencia o simplemente quieres compartir tu experiencia con nosotros. Estamos aquí para escucharte.
+		</p>
+		
+		<div class="row justify-content-center mt-4">
+			<div class="col-md-8 col-sm-12 text-start">
+				<form>
+					<div class="row">
+						<div class="col-md-6 col-sm-12 mb-3">
+							<label class="form-label contact-label">*Nombre Completo del Cliente</label>
+							<input type="text" class="form-control contact-input-yellow" placeholder="Ingresa tu nombre completo" required>
+						</div>
+						<div class="col-md-6 col-sm-12 mb-3">
+							<label class="form-label contact-label">*Correo Electrónico Válido</label>
+							<input type="email" class="form-control contact-input-yellow" placeholder="contacto@ejemplo.com" required>
+						</div>
+					</div>
+					
+					<div class="mb-4">
+						<label class="form-label contact-label">Mensaje</label>
+						<textarea class="form-control contact-input-pink" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+					</div>
+					
+					<div class="text-center">
+						<button type="submit" class="btn contact-pill-btn">Enviar Consulta</button>
+					</div>
+				</form>
+				
+				<p class="contact-info-footer text-center mt-4">
+					Déjanos tus datos y nos pondremos en contacto a la brevedad. Para atención telefónica, llámanos a la Central TANTA al <strong>(01) 500-2550</strong> de lunes a sábado de 9am a 6pm, o envíanos un WhatsApp al <strong>+51 996 235 567</strong>. Para consultas específicas sobre eventos o reservas corporativas, escríbenos a <strong>eventos@tanta.com.pe</strong>.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- LOCALES -->
+	<section id="locales" class="container text-center mt-5 pt-5">
+		<div class="mb-2">
+			<img src="imagenes/icono corazon.png" alt="Icono Corazón" style="max-height: 40px;">
+		</div>
+		<h2 class="fw-bold" style="color: #4a1c1c; font-size: 2.2rem; letter-spacing: 1px;">NUESTROS LOCALES</h2>
+		<p class="text-muted mb-4">Selecciona un local para ubicarlo en el mapa interactivo.</p>
+		
+		<div class="row mt-4 align-items-stretch">
+			<!-- Columna Izquierda: Carrusel Vertical de Locales -->
+			<div class="col-md-5 col-sm-12 mb-4 mb-md-0 text-start">
+				<div class="mb-3 text-center text-md-start">
+					<span class="badge rounded-pill text-white px-4 py-2 d-inline-flex align-items-center shadow-sm" style="background-color: #ff007f; font-size: 1rem; letter-spacing: 1px;">
+						<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="me-2">
+							<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+						</svg>
+						LIMA
+					</span>
+				</div>
+				<div class="locales-scroll-container pe-2" style="max-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px;">
+					<!-- Local 1 -->
+					<div class="card p-3 border-0 shadow-sm local-card local-card-active" onclick="seleccionarLocal('Tanta Chacarilla Surco Lima', this)">
+						<div class="card-body p-1">
+							<h6 class="fw-bold mb-1" style="color: #4a1c1c;"><span style="color: #ff7a00;"></span> Tanta Chacarilla</h6>
+							<p class="mb-2" style="font-size: 0.8rem; color: #4a1c1c;">Av. Primavera 1012, Chacarilla, Surco.</p>
+							<button class="btn btn-sm text-white fw-bold px-3 py-1" style="background-color: #ff007f; border-radius: 4px; font-size: 0.75rem;">SELECCIONAR</button>
+						</div>
+					</div>
+					
+					<!-- Local 2 -->
+					<div class="card p-3 border-0 shadow-sm local-card" onclick="seleccionarLocal('Tanta Larcomar Miraflores Lima', this)">
+						<div class="card-body p-1">
+							<h6 class="fw-bold mb-1" style="color: #4a1c1c;"><span style="color: #ff7a00;"></span> Tanta Larcomar</h6>
+							<p class="mb-2" style="font-size: 0.8rem; color: #4a1c1c;">C.C. Larcomar, Miraflores.</p>
+							<button class="btn btn-sm text-white fw-bold px-3 py-1" style="background-color: #ff007f; border-radius: 4px; font-size: 0.75rem;">SELECCIONAR</button>
+						</div>
+					</div>
+					
+					<!-- Local 3 -->
+					<div class="card p-3 border-0 shadow-sm local-card" onclick="seleccionarLocal('Tanta Pancho Fierro San Isidro Lima', this)">
+						<div class="card-body p-1">
+							<h6 class="fw-bold mb-1" style="color: #4a1c1c;"><span style="color: #ff7a00;"></span> Tanta San Isidro</h6>
+							<p class="mb-2" style="font-size: 0.8rem; color: #4a1c1c;">Av. Pancho Fierro 115, San Isidro.</p>
+							<button class="btn btn-sm text-white fw-bold px-3 py-1" style="background-color: #ff007f; border-radius: 4px; font-size: 0.75rem;">SELECCIONAR</button>
+						</div>
+					</div>
+					
+					<!-- Local 4 -->
+					<div class="card p-3 border-0 shadow-sm local-card" onclick="seleccionarLocal('Tanta Jockey Plaza Surco Lima', this)">
+						<div class="card-body p-1">
+							<h6 class="fw-bold mb-1" style="color: #4a1c1c;"><span style="color: #ff7a00;"></span> Tanta Jockey Plaza</h6>
+							<p class="mb-2" style="font-size: 0.8rem; color: #4a1c1c;">C.C. Jockey Plaza, Surco.</p>
+							<button class="btn btn-sm text-white fw-bold px-3 py-1" style="background-color: #ff007f; border-radius: 4px; font-size: 0.75rem;">SELECCIONAR</button>
+						</div>
+					</div>
+					
+					<!-- Local 5 -->
+					<div class="card p-3 border-0 shadow-sm local-card" onclick="seleccionarLocal('Tanta Real Plaza Salaverry Jesus Maria Lima', this)">
+						<div class="card-body p-1">
+							<h6 class="fw-bold mb-1" style="color: #4a1c1c;"><span style="color: #ff7a00;"></span> Tanta Salaverry</h6>
+							<p class="mb-2" style="font-size: 0.8rem; color: #4a1c1c;">C.C. Real Plaza Salaverry, Jesús María.</p>
+							<button class="btn btn-sm text-white fw-bold px-3 py-1" style="background-color: #ff007f; border-radius: 4px; font-size: 0.75rem;">SELECCIONAR</button>
+						</div>
+					</div>
+					
+					<!-- Local 6 -->
+					<div class="card p-3 border-0 shadow-sm local-card" onclick="seleccionarLocal('Tanta Plaza San Miguel Lima', this)">
+						<div class="card-body p-1">
+							<h6 class="fw-bold mb-1" style="color: #4a1c1c;"><span style="color: #ff7a00;"></span> Tanta San Miguel</h6>
+							<p class="mb-2" style="font-size: 0.8rem; color: #4a1c1c;">C.C. Plaza San Miguel, San Miguel.</p>
+							<button class="btn btn-sm text-white fw-bold px-3 py-1" style="background-color: #ff007f; border-radius: 4px; font-size: 0.75rem;">SELECCIONAR</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Columna Derecha: Mapa -->
+			<div class="col-md-7 col-sm-12">
+				<div class="card p-2 border-0 shadow-sm h-100" style="background-color: #ede6d6; border-radius: 12px; min-height: 400px;">
+					<iframe 
+						id="tanta-mapa-frame"
+						src="https://maps.google.com/maps?q=Tanta%20Chacarilla%20Surco%20Lima&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+						width="100%" 
+						height="100%" 
+						style="border: 0; border-radius: 10px; min-height: 380px;" 
+						allowfullscreen="" 
+						loading="lazy" 
+						referrerpolicy="no-referrer-when-downgrade">
+					</iframe>
+				</div>
+			</div>
+		</div>
+	</section>
+	</main>
+
+	<!-- FOOTER -->
+	<footer class="custom-footer mt-5">
+		<div class="footer-top py-5">
+			<div class="container">
+				<div class="row align-items-center">
+					<!-- Logo e Información de Marca (Izquierda) -->
+					<div class="col-md-4 col-sm-12 text-center text-md-start mb-4 mb-md-0">
+						<img src="imagenes/tanta-logo.png" alt="Tanta Logo" class="img-fluid mb-3" style="max-height: 55px;">
+						<p class="text-white-50 small pe-md-4" style="line-height: 1.6;">
+							Tanta es sabor, tradición y generosidad peruana. Un lugar de encuentro para compartir los mejores momentos y la más rica comida criolla.
+						</p>
+					</div>
+					
+					<!-- Columnas de Enlaces (Derecha) -->
+					<div class="col-md-8 col-sm-12">
+						<div class="row text-start justify-content-md-end">
+							<!-- Columna de Navegación (Coincide con el Menú) -->
+							<div class="col-md-4 col-sm-6 mb-3">
+								<h6 class="footer-heading">MENÚ</h6>
+								<ul class="list-unstyled footer-links">
+									<li><a href="#inicio">INICIO</a></li>
+									<li><a href="#carta">NUESTRA CARTA</a></li>
+									<li><a href="#nosotros">NOSOTROS</a></li>
+									<li><a href="#servicios">SERVICIOS</a></li>
+									<li><a href="#contacto">CONTACTO</a></li>
+									<li><a href="#locales">LOCALES</a></li>
+								</ul>
+							</div>
+							
+							<!-- Columna de Atención y Contacto Directo -->
+							<div class="col-md-5 col-sm-6 mb-3">
+								<h6 class="footer-heading">ATENCIÓN Y RESERVAS</h6>
+								<ul class="list-unstyled footer-links">
+									<li class="text-white-50 small mb-2">
+										<strong>Central TANTA:</strong><br>
+										(01) 500-2550 (Lunes a Sábado de 9am a 6pm)
+									</li>
+									<li class="text-white-50 small mb-2">
+										<strong>WhatsApp:</strong><br>
+										+51 996 235 567
+									</li>
+									<li class="text-white-50 small">
+										<strong>Eventos y Reservas:</strong><br>
+										<a href="mailto:eventos@tanta.com.pe" style="color: #ff007f !important;">eventos@tanta.com.pe</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Barra inferior fucsia con redes -->
+		<div class="footer-bottom py-3">
+			<div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+				<p class="mb-0 text-white">&copy; 2026 Tanta. Todos los derechos reservados.</p>
+				<!-- Iconos de Redes Sociales -->
+				<div class="d-flex gap-3 mt-2 mt-md-0">
+					<!-- Instagram -->
+					<a href="#" class="social-icon">
+						<svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+							<path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.999 0h.002zm-.008 1.493c2.149 0 2.403.008 3.25.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.493a2.615 2.615 0 1 1 0 5.23 2.615 2.615 0 0 1 0-5.23z"/>
+						</svg>
+					</a>
+					<!-- Facebook -->
+					<a href="#" class="social-icon">
+						<svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+							<path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+						</svg>
+					</a>
+					<!-- TikTok -->
+					<a href="#" class="social-icon">
+						<svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+							<path d="M9 0h1.98c.144.32.34.61.58.85.24.24.53.436.85.58a3.224 3.224 0 0 0 2.24 0c.32-.144.61-.34.85-.58.24-.24.436-.53.58-.85C16.144.32 16 0 16 0h-2v2.24c0 .32-.09.61-.24.85a3.224 3.224 0 0 1-2.24 0c-.32-.144-.61-.34-.85-.58A3.224 3.224 0 0 1 10.42.85V14a3 3 0 1 1-6-0V11a3 3 0 0 1 3-3h1V6H7a5 5 0 0 0-5 5v3a5 5 0 0 0 10 0V3.58c1.01.666 2.22 1.01 3.42.92V2.5c-.8.016-1.585-.23-2.22-.7C12.565 1.127 12 0 12 0H9z"/>
+						</svg>
+					</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		// Lógica de pestañas dinámicas (Single Page App)
+		document.querySelectorAll('a[href^="#"]').forEach(link => {
+			link.addEventListener('click', function(e) {
+				const targetId = this.getAttribute('href');
+				if (targetId.startsWith('#')) {
+					e.preventDefault();
+					
+					// Ocultar todas las secciones
+					document.querySelectorAll('section').forEach(sec => {
+						sec.classList.remove('active');
+					});
+					
+					// Mostrar la sección seleccionada
+					const targetSec = document.querySelector(targetId);
+					if (targetSec) {
+						targetSec.classList.add('active');
+					}
+					
+					// Actualizar estado activo en la barra de navegación
+					document.querySelectorAll('.navbar-nav .nav-link').forEach(navLink => {
+						navLink.classList.remove('active-nav');
+					});
+					if (this.classList.contains('nav-link')) {
+						this.classList.add('active-nav');
+					} else {
+						const matchingNav = document.querySelector(`.navbar-nav .nav-link[href="${targetId}"]`);
+						if(matchingNav) matchingNav.classList.add('active-nav');
+					}
+					
+					// Cerrar el menú desplegable en móvil
+					const menu = document.getElementById('menu');
+					if (menu.classList.contains('show')) {
+						const bsCollapse = bootstrap.Collapse.getInstance(menu);
+						if (bsCollapse) {
+							bsCollapse.hide();
+						}
+					}
+				}
+			});
+		});
+
+		// Función para cambiar de local en el mapa interactivo
+		function seleccionarLocal(query, element) {
+			const mapFrame = document.getElementById('tanta-mapa-frame');
+			if (mapFrame) {
+				const encodedQuery = encodeURIComponent(query);
+				mapFrame.src = `https://maps.google.com/maps?q=${encodedQuery}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
+			}
+			
+			// Remover clase activa de otras tarjetas y añadir a la actual
+			document.querySelectorAll('.local-card').forEach(card => {
+				card.classList.remove('local-card-active');
+			});
+			if (element) {
+				element.classList.add('local-card-active');
+			}
+		}
+	</script>
+</body>
+</html>
+
